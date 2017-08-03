@@ -24,16 +24,16 @@ export default class MTDemo extends Component {
     render() {
         return (
             <Navigator
-                initialRoute={{name: "MainPage", component: MainPage}}
+                initialRoute={{name : "MainPage", component : MainPage}}
                 configureScene={(route) => {
-                    return Navigator.SceneConfigs.FloatFromBottom;
-                }}
-
+                    return Navigator.SceneConfigs.PushFromRight;                }}
                 renderScene={(route, navigator) => {
                     let Component = route.component;
-                    return <Component {...route.params} navigator={navigator}/>
+
+                    return <Component {...this.params} navigator={navigator}/>
                 }}
             />
+
         )
     }
 }

@@ -16,12 +16,38 @@ import Toast from 'react-native-root-toast';
 
 var Dimensions = require("Dimensions");
 
+import { Platform } from 'react-native';
+import { BackHandler } from 'react-native';
+
 // 获取屏幕宽高
 var widowHeight = Dimensions.get("window").height;
 var widowWidth = Dimensions.get("window").width;
 
 // 创建QQDemo组件
 export default class QQDemo extends Component {
+
+    onBackAndroid =  () =>  {
+        const navigator  = this.props.navigator;
+        const routers = navigator.getCurrentRoutes();
+        console.log('当前路由长度：'+routers.length);
+
+        if (routers.length > 1) {
+            navigator.pop();
+            return true;//接管默认行为
+        }
+
+        return false;//默认行为
+    };
+
+    componentWillMount() {
+
+
+        if (Platform.OS === 'android') {
+            BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+
+
     /**
      * 渲染界面
      */
@@ -98,7 +124,7 @@ export default class QQDemo extends Component {
     goBack() {
 
         // 防止重复发送请求
-        if (this.state.userName.length == 0 || this.state.passWord.length == 0){
+        if (this.state.userName.length == 0 || this.state.passWord.length == 0) {
             this.showToast("请输入用户名与密码");
             return;
         }
@@ -118,6 +144,8 @@ export default class QQDemo extends Component {
                     // 判断账号密码是否正确
                     if (this.state.userName == "xiaomage" && this.state.passWord == "123456") {
 
+
+                        console.log(responseJson);
                         this.props.getUserMsg(responseJson);
 
                         this.props.navigator.pop();

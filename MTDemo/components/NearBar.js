@@ -38,6 +38,7 @@ export default class HomeBar extends Component{
                     source={{uri : "search_ic_suggestion_default"}}>
                     </Image>
                     <TextInput
+                        underlineColorAndroid={"transparent"}
                         style={styles.inputStyle}
                     placeholder={this.props.option.placeHold}>
                     </TextInput>

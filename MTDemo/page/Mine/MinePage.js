@@ -25,14 +25,16 @@ var mineBean = require("../../data/MineBean.json");
 
 export default class MinePage extends Component {
 
+
+
     constructor(props) {
         super(props);
 
 
         this.state = {
+            topBar: mineBean.topBar,
             items: mineBean.items,
             headerItem: mineBean.headerItem,
-            TopBar: mineBean.TopBar,
         };
 
         //
@@ -148,11 +150,14 @@ export default class MinePage extends Component {
     }
 
     renderItems() {
+
+
         var items = [];
 
+        console.log(this.state.items);
 
-        for (var i = 0; i < this.state.TopBar.length; i++) {
-            var item = this.state.TopBar[i];
+        for (var i = 0; i < this.state.topBar.length; i++) {
+            var item = this.state.topBar[i];
 
             if (item.hasMsg) {
                 items.push(
@@ -188,7 +193,6 @@ export default class MinePage extends Component {
     loginView() {
         // 当点击按钮的动画效果结束之后再跳转
         InteractionManager.runAfterInteractions(() => {
-
 
             this.props.navigator.push({
                 component: LoginPage,

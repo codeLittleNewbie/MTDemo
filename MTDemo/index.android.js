@@ -26,7 +26,7 @@ export default class MTDemo extends Component {
         <Navigator
             initialRoute={{ name: "HomePage", component: MainPage }}
             configureScene={(route) => {
-              return Navigator.SceneConfigs.HorizontalSwipeJumpFromRight;
+              return Navigator.SceneConfigs.FloatFromRight;
             }}
             renderScene={(route, navigator) => {
               let Component = route.component;

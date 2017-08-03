@@ -1,5 +1,5 @@
 {
-  "TopBar":[
+  "topBar":[
     {"icon":"mine_clothes","hasMsg":false,"msgNumber":"3"},
     {"icon":"mine_setting","hasMsg":false,"msgNumber":"1"},
     {"icon":"mine_alarm","hasMsg":false,"msgNumber":"0"}

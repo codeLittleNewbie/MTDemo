@@ -25,7 +25,7 @@ export default class HomeBar extends Component{
     constructor(props){
         super(props);
         this.state = {
-
+            topBar : mineBean.TopBar,
         }
     }
 
@@ -44,10 +44,9 @@ export default class HomeBar extends Component{
     renderItems(){
         var items = [];
 
-        console.log(this.props.option);
 
-        for (var i = 0; i < this.props.topBar.length; i++) {
-            var item = this.props.topBar[i];
+        for (var i = 0; i < this.state.topBar.length; i++) {
+            var item = this.state.topBar[i];
 
             if (item.hasMsg){
                items.push(

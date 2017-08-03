@@ -33,9 +33,9 @@ export default class HomeLike extends Component {
     render() {
 
 
-        // if (this.props.option.length == 0){
-        //    return (<View></View>)
-        // }
+        if (this.props.option.length == 0){
+           return (<View></View>)
+        }
         //
         // console.log(this.props.option);
         //
@@ -43,6 +43,11 @@ export default class HomeLike extends Component {
         // this.setState({
         //     dataSource:this.state.dataSource.cloneWithRows(this.props.option),
         // });
+
+        // 替换状态机
+        this.state = {
+            dataSource : this.state.dataSource.cloneWithRows(this.props.option)
+        };
 
         return (
             <ListView

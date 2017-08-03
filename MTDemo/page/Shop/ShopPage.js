@@ -28,6 +28,8 @@ export default class ShopPage extends Component{
         }
     }
 
+
+
     render(){
         return(
             <View style={styles.viewStyle}>

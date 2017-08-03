@@ -35,7 +35,7 @@ export default class MainPage extends Component {
         super(props);
 
         this.state = {
-            selected: "首页",
+            selected: "附近",
         }
     }
 
@@ -161,7 +161,7 @@ export default class MainPage extends Component {
 const styles = StyleSheet.create({
 
     imageStyle: {
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
     }
 });

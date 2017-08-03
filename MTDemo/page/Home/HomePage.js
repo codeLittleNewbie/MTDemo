@@ -37,6 +37,7 @@ export default class HomePage extends Component{
             thridItems: [],
             fourItems: [],
             goods: [],
+            responseJson : null,
         }
     }
 
@@ -47,27 +48,44 @@ export default class HomePage extends Component{
         var fourItems = this.state.fourItems;
         var goods = this.state.goods;
 
-        return(
-            <View style={styles.viewStyle}>
-                {/*首页导航栏*/}
-                <HomeBar/>
-                <ScrollView>
-                    {/*首页菜单栏*/}
-                    <HomeMenu option={categorys}/>
-                    {/*分割线*/}
-                    <BoldLine/>
-                    {/*首页分类栏*/}
-                    <HomeCategory option={thridItems}/>
-                    <HomeCategory option={fourItems}/>
-                    <BoldLine/>
-                    <View style={styles.youLikeViewStyle}>
-                        <Text style={styles.youLikeStyle}>-猜你喜欢-</Text>
-                    </View>
-                    {/*首页猜你喜欢*/}
-                    <HomeLike option={goods}/>
-                </ScrollView>
-            </View>
-        )
+
+        if (this.state.responseJson == null){
+           return(
+               <View style={styles.homeView}>
+                   <HomeBar/>
+                   <View style={styles.loadingView}>
+
+                       <Image style={styles.loadImage}
+                              source={{uri : "refreshing_image_01"}}
+                       >
+                       </Image>
+                       <Text>正在加载中...</Text>
+                   </View>
+               </View>
+           )
+        }else {
+            return(
+                <View style={styles.viewStyle}>
+                    {/*首页导航栏*/}
+                    <HomeBar/>
+                    <ScrollView>
+                        {/*首页菜单栏*/}
+                        <HomeMenu option={categorys}/>
+                        {/*分割线*/}
+                        <BoldLine/>
+                        {/*首页分类栏*/}
+                        <HomeCategory option={thridItems}/>
+                        <HomeCategory option={fourItems}/>
+                        <BoldLine/>
+                        <View style={styles.youLikeViewStyle}>
+                            <Text style={styles.youLikeStyle}>-猜你喜欢-</Text>
+                        </View>
+                        {/*首页猜你喜欢*/}
+                        <HomeLike option={goods}/>
+                    </ScrollView>
+                </View>
+            )
+        }
     }
 
     // 发送网络请求
@@ -84,6 +102,7 @@ export default class HomePage extends Component{
                     thridItems: responseJson.thridItems,
                     fourItems: responseJson.fourItems,
                     goods: responseJson.goods,
+                    responseJson : responseJson,
                 })
             });
     }
@@ -106,5 +125,20 @@ const styles = StyleSheet.create({
         alignItems : "center",
         justifyContent : "center",
         textAlign : "center",
+    },
+    homeView : {
+        marginTop : 20,
+        flex : 1,
+    },
+    loadingView : {
+        flex : 1,
+        flexDirection : "row",
+        justifyContent : "center",
+        alignItems : "center",
+    },
+    loadImage : {
+        height : 45,
+        width : 45,
+        marginRight : 10,
     }
 });
